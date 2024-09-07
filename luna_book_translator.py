@@ -10,8 +10,8 @@ from docx import Document
 
 # OpenAI API Key and Assistant IDs
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-TRANSLATOR_ASSISTANT_ID = "asst_Hy8S4G1244TWGXzgzNez2AlD"  # Replace with actual ID
-REVIEWER_ASSISTANT_ID = "asst_nlgKycQki3doMhFLBRr3qGG9"  # Replace with actual ID
+TRANSLATOR_ASSISTANT_ID = "add your assistant id here"  # Replace with actual ID
+REVIEWER_ASSISTANT_ID = "add your assistant id here"  # Replace with actual ID
 
 # Pydantic models
 class TranslationProgress(BaseModel):
@@ -193,7 +193,7 @@ class TranslationOrchestrator:
             self.job.progress.status = "completed"
             translated_content = "\n".join([chunk.content for chunk in self.job.chunks])
             self.save_translation(translated_content)
-            return "Book translation completed! Saved to G:\\My Drive\\luna_translations"
+            return "Book translation completed! Saved to add your saving folder address"
         except Exception as e:
             self.job.progress.status = "failed"
             return f"Book translation failed: {str(e)}"
@@ -202,7 +202,7 @@ class TranslationOrchestrator:
         doc = Document()
         doc.add_paragraph(content)
         filename = f"{self.job.book_id}_{self.job.target_language}.docx"
-        save_path = os.path.join("G:\\My Drive\\luna_translations", filename)
+        save_path = os.path.join("add your saving folder address", filename)
         doc.save(save_path)
 
 def translate_book(book, source_lang, target_lang, progress=gr.Progress()):
